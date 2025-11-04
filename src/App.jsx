@@ -8,19 +8,32 @@ import Footer from './components/Footer/Footer'
 import LoginPopup from './components/LoginPopup/LoginPopup'
 
 const App = () => {
+  const [showLogin, setShowLogin] = useState(false)
 
-  const [showLogin, setShowLogin] =useState(false)
   return (
     <>
-    {showLogin?<LoginPopup setShowLogin={setShowLogin}/>:<></>}
+      {/* Login Popup */}
+      {showLogin && <LoginPopup setShowLogin={setShowLogin} />}
+
       <div className='app'>
+        {/* Navbar */}
         <Navbar setShowLogin={setShowLogin} />
+
+        {/* Routes */}
         <Routes>
+          {/* Default Home Page */}
           <Route path='/' element={<Home />} />
+
+          {/* Other Pages */}
           <Route path='/cart' element={<Cart />} />
           <Route path='/order' element={<PlaceOrder />} />
+
+          {/* Fallback for any unknown URL — redirects to Home */}
+          <Route path='*' element={<Home />} />
         </Routes>
       </div>
+
+      {/* Footer */}
       <Footer />
     </>
   )
