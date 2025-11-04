@@ -42,7 +42,7 @@
 }
 
 /* ✅ Mobile Responsive Fix (Keep 2 inputs per row) */
-@media (max-width: 768px) {
+@media (max-width: 760px) {
   .place-order {
     flex-direction: column;
     gap: 30px;
