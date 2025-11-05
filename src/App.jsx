@@ -6,6 +6,8 @@ import Cart from './pages/Cart/Cart'
 import PlaceOrder from './pages/PlaceOrder/PlaceOrder'
 import Footer from './components/Footer/Footer'
 import LoginPopup from './components/LoginPopup/LoginPopup'
+import PaytmPage from "./pages/PaytmPage/PaymentPage"
+
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false)
@@ -30,6 +32,8 @@ const App = () => {
 
           {/* Fallback for any unknown URL — redirects to Home */}
           <Route path='*' element={<Home />} />
+
+          <Route path="/paytm" element={<PaytmPage />} />
         </Routes>
       </div>
 

@@ -1,9 +1,16 @@
 import React, { useContext } from 'react'
 import './PlaceOrder.css'
 import { StoreContext } from '../../context/StoreContext'
+import { useNavigate } from 'react-router-dom'   // ✅ Added navigate import
 
 const PlaceOrder = () => {
   const { getTotalCartAmount } = useContext(StoreContext)
+  const navigate = useNavigate();  // ✅ Initialize navigation
+
+  const handleProceedPayment = (e) => {
+    e.preventDefault();
+    navigate('/paytm');  // ✅ Redirect to Paytm payment page
+  };
 
   return (
     <form className="place-order">
@@ -34,25 +41,29 @@ const PlaceOrder = () => {
 
       {/* RIGHT SIDE — CART SUMMARY */}
       <div className="place-order-right">
-         <div className="cart-total">
+        <div className="cart-total">
           <h2>Cart Totals</h2>
           <div>
             <div className="cart-total-details">
               <p>Subtotal</p>
               <p>${getTotalCartAmount()}</p>
             </div>
-            <hr/>
+            <hr />
             <div className="cart-total-details">
               <p>Delivery Fee</p>
-              <p>${getTotalCartAmount()===0?0:2}</p>
+              <p>${getTotalCartAmount() === 0 ? 0 : 2}</p>
             </div>
-            <hr/>
+            <hr />
             <div className="cart-total-details">
               <p>Total</p>
-              <b>${getTotalCartAmount()===0?0:getTotalCartAmount()+2}</b>
+              <b>${getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}</b>
             </div>
           </div>
-          <button onClick={()=>navigate('/order')}>PROCEED TO CHECKOUT</button>
+
+          {/* ✅ Updated Button */}
+          <button onClick={handleProceedPayment} className="proceed-btn">
+            PROCEED TO PAYMENT
+          </button>
         </div>
       </div>
     </form>
@@ -60,4 +71,3 @@ const PlaceOrder = () => {
 }
 
 export default PlaceOrder
- 
